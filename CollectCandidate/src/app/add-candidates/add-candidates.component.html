@@ -1,0 +1,129 @@
+<div class="pt-3 container-fluid text-black">
+    <header class="border-bottom p-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="text-center w-100">
+                <h2>Candidate Form</h2>
+            </div>
+            <div class="text-center">
+                <img src="assets/images/images.png" width="70px" height="70px" class="rounded">
+                <h3 *ngIf="!loading">{{employee.employeeName}}</h3>
+            </div>
+        </div>
+    </header>
+    
+    <div  class="container mt-5">
+      <form [formGroup]="userForm" (submit)="onSubmit()">
+        <div class="row">
+          <div class="mb-3 col-lg-6 col-12">
+            <label for="candidateName" class="form-label">Candidate Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="candidateName"
+              formControlName="candidateName"
+            />
+            <div *ngIf="userForm.controls['candidateName'].invalid && (userForm.controls['candidateName'].dirty || userForm.controls['candidateName'].touched)">
+              <span *ngIf="userForm.controls['candidateName'].errors?.['required']" class="text-danger">Field is required</span>
+              <span *ngIf="userForm.controls['candidateName'].errors?.['pattern']" class="text-danger">Please enter only characters</span>
+            </div>
+          </div>
+      
+          <div class="mb-3 col-lg-6 col-12">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="email"
+              class="form-control"
+              id="email"
+              formControlName="email"
+            />
+            <div *ngIf="userForm.controls['email'].invalid && (userForm.controls['email'].dirty || userForm.controls['email'].touched)">
+              <span *ngIf="userForm.controls['email'].errors?.['required']" class="text-danger">Field is required</span>
+              <span *ngIf="userForm.controls['email'].errors?.['email']" class="text-danger">Please enter a valid email</span>
+            </div>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="mb-3 col-lg-6 col-12">
+            <label for="interviewerName" class="form-label">Interviewer Name</label>
+            <input class="form-control " id="interviewerName" formControlName="interviewerName" required />
+          </div>
+      
+          <div class="mb-3 col-lg-6 col-12">
+            <label for="contact" class="form-label">Contact Number</label>
+            <input
+              type="text"
+              class="form-control"
+              id="contact"
+              formControlName="contact"
+              pattern="[0-9]{10}"
+              required
+            />
+            <div *ngIf="userForm.controls['contact'].invalid && (userForm.controls['contact'].dirty || userForm.controls['contact'].touched)">
+              <span *ngIf="userForm.controls['contact'].errors?.['required']" class="text-danger">Field is required</span>
+              <span *ngIf="userForm.controls['contact'].errors?.['pattern']" class="text-danger">Please enter a valid 10-digit number</span>
+            </div>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="mb-3 col-lg-6 col-12">
+            <label for="position" class="form-label">Position</label>
+            <select class="form-select" id="position" formControlName="position" required>
+              <option value="">Select Position</option>
+              <option *ngFor="let position of positions" [value]="position.position">{{ position.position }}</option>
+            </select>
+          </div>
+      
+          <div class="mb-3 col-lg-6 col-12">
+            <label for="experience" class="form-label">Years of Experience</label>
+            <select class="form-select" id="experience" formControlName="experience" required>
+              <option value="">Select Years of Experience</option>
+              <option value="0-1">0-1 Year</option>
+              <option value="2-3">2-3 Years</option>
+              <option value="4-5">4-5 Years</option>
+              <option value="5+">5+ Years</option>
+            </select>
+          </div>
+        </div>
+      
+        <div class="row">
+          <div class="mb-3 col-lg-6 col-12">
+            <label for="location" class="form-label">Location</label>
+            <input
+              type="text"
+              class="form-control"
+              id="location"
+              formControlName="location"
+              required
+            />
+            <div *ngIf="userForm.controls['location'].invalid && (userForm.controls['location'].touched || userForm.controls['location'].dirty)">
+              <span *ngIf="userForm.controls['location'].errors?.['required']" class="text-danger">Field is required</span>
+            </div>
+          </div>
+      
+          <div class="mb-3 col-lg-6 col-12">
+            <label for="resume" class="form-label">Resume</label>
+            <input
+              type="file"
+              class="form-control"
+              id="resume"
+              multiple
+              (change)="Onchange($event)"
+              formControlName="resume"
+              required
+            />
+            <div *ngIf="userForm.controls['resume'].invalid && userForm.controls['resume'].touched">
+              <span class="text-danger">Field is required</span>
+            </div>
+          </div>
+        </div>
+      
+        <div class="d-flex justify-content-end">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+      
+    </div>
+  </div>
+  

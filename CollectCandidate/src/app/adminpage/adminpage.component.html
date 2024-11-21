@@ -1,0 +1,40 @@
+<div class="w-100 d-flex">
+    <div  style="width: 300px; position:fixed; top: 0; bottom: 0; background-color: rgb(15, 12, 12);">
+        <div class="px-2 text-center">
+            <div class="text-center py-3 text-white" >
+                <h2 style=" font-family: 'Roboto', sans-serif;">Employee</h2>
+             </div>
+            <div (click)="toNavigate('applyCandidates')" class="w-100  py-3 px-2 my-1 btn nav text-white " [ngClass]="{'active':currentComponent=='applyCandidates'}">
+              <h3>Apply Candidates</h3>
+              <!-- <h2 class="back-arrow" style="cursor: pointer;">&lt;</h2> -->
+           </div>
+           <div (click)="toNavigate('addCandidates')" class="text-center w-100 py-3 my-1 px-2 btn nav text-white " [ngClass]="{'active':currentComponent=='addCandidates'}">
+            <h3>Add Candidates</h3>
+         </div>
+         <div (click)="positionVisibility()" class=" w-100 py-3 px-2 d-flex my-1 nav justify-content-evenly align-items-center btn text-white  cursor-pointer" [ngClass]="{'active':currentComponent=='master'}">
+            <h3 class="ps-5">Master</h3>
+            <h2  class="back-arrow ms-auto" >
+                <i [ngClass]="isPositionVisible==true ? 'fas fa-arrow-down' :'fas fa-arrow-left'"></i>
+            </h2>
+          </div>
+          <div *ngIf="isPositionVisible" class="text-center btn my-1  w-100 py-3 " [ngClass]="{'subclass':currentComponent=='addposition'}">
+            <h5 class=" py-3 rounded-0">Add Position</h5>
+          </div>    
+           
+        </div>
+        
+    </div>
+
+
+    <div class="w-100" style="padding-left: 300px;  min-height: 100vh;">
+        <div *ngIf="currentComponent=='applyCandidates'">
+            <app-apply-candidates [employeeID]="userEmployeeId"></app-apply-candidates>
+        </div>
+        <div *ngIf="currentComponent=='addCandidates'">
+            <app-add-candidates [employeeID]="userEmployeeId"></app-add-candidates>
+        </div>
+        <div *ngIf="currentComponent=='addposition'">
+            <app-add-position [employeeID]="userEmployeeId"></app-add-position>
+        </div>
+    </div>
+</div>

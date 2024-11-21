@@ -1,0 +1,69 @@
+<div class="pt-3 container-fluid text-black">
+    <header class="border-bottom p-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="text-center w-100">
+                <h2>Add Positions</h2>
+            </div>
+            <div class="text-center ">
+                <img src="assets/images/images.png" width="70px" height="70px" class="rounded">
+                <h3  *ngIf="!loading">{{employee.employeeName}}</h3>
+            </div>
+        </div>
+    </header>
+    <div class="text-center container">
+      <div>
+        
+       <div>
+        <h1>Positions</h1>
+       </div>
+       
+        <table class="table border container">
+           <thead>
+              <tr>
+                <th>No.of</th>
+                <th>Positions</th>
+                <th>Remove</th>
+              </tr>
+           </thead>
+            <tbody>
+                <tr *ngFor="let Position of allPosition; let i=index">
+                   <td>{{i+1}}</td>
+                   <td>{{Position.position}}</td>
+                   <td><button class="btn btn-danger" (click)="deletePosition(Position.id)">Delete</button></td>
+                </tr> 
+            </tbody>
+          </table>
+          <div class="text-center container border p-4 rounded-2" style="width: 500px;">
+            <form (submit)="addPosition(formval)" #formval="ngForm">
+                <div class="mb-3 row fs-5">
+                    <div class="col-lg-6 col-12 ">
+                        <label for="position" class="form-label ">Position Name :</label>
+                    </div>
+                  <div class="col-lg-6 col-12">
+                    <input
+                    id="position"
+                    class="form-control col-12 col-lg-12 fs-5"
+                    placeholder="Add position name"
+                    name="position"
+                    [(ngModel)]="position"
+                    #Position="ngModel" 
+                    required
+                  />
+                  <span *ngIf="Position.invalid && (Position.dirty || Position.touched)">
+                    <span class="text-danger pt-1" *ngIf="Position.errors?.['required']">
+                        <h5>field is Required</h5>
+                    </span>
+
+                  </span>
+                  </div>
+                </div>
+                <div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+          </div>
+      </div>
+      
+        
+    </div>
+</div>

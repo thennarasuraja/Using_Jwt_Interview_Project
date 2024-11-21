@@ -1,0 +1,41 @@
+<div class="pt-3 container-fluid text-black" >
+    <header class="border-bottom p-3">
+        <div class="d-flex justify-content-between align-items-center">
+            <div class="text-center w-100">
+                <h2>Apply Candidates</h2>
+            </div>
+            <div class="text-center">
+                <img src="assets/images/images.png" width="70px" height="70px" class="rounded">
+                <h3 *ngIf="!loading">{{employee.employeeName}}</h3>
+            </div>
+        </div>
+    </header>
+    <div class="p-3">
+     <div class="border rounded-2 py-4 px-3 my-2 " style="background-color: rgb(221, 219, 219);" *ngFor="let candidate of allCandidates">
+        <div class="row">
+           <div class="col">
+             <h4>Candidate Name</h4>
+             <h5 class="px-3 pt-1">{{candidate.candidateName}}</h5>
+           </div>
+           <div class="col">
+              <h4>Interviewer Name</h4>
+              <h5 class="px-3 pt-1" *ngIf="!loading">{{candidate.interviewerName}}</h5>
+           </div>
+           <div class="col">
+              <h4>Position:</h4>
+              <h5 class="px-3 pt-1">{{candidate.position}}</h5>
+           </div>
+           <div class="col">
+            <h4>Year Of Experience</h4>
+            <h5 class="px-3 pt-1" >{{candidate.experience}}</h5>
+           </div>
+           <!-- <div class="col">
+            <h4>Resume</h4>
+            <h5 class="px-3 pt-1">{{candidate.resume}}</h5>
+           </div>    -->
+        </div>
+     </div>
+    </div>
+
+
+</div>
